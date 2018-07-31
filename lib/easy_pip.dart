@@ -5,21 +5,18 @@ import 'package:flutter/material.dart';
 class PIPStack extends StatefulWidget {
   // The backgroundWidget houses the background page shown.
   // In the context of video-playing apps this would display the list of videos.
-  @required
   final Widget backgroundWidget;
 
   // The pipWidget is the widget that is shrunk and displayed over the backgroundWidget.
   // In context of video-playing apps, this would be the video player.
   // NOTE: In the absence of a pipExpandedContent, this would fill the screen.
-  @required
   final Widget pipWidget;
 
   // This method is called when a pip close button is clicked.
-  @required
   final VoidCallback onClosed;
 
   // This bool value decides if the upper PIP layer is displayed.
-  @required
+  // The value is false by default and needs to be set to true to start pip mode.
   final bool pipEnabled;
 
   // This is the content below the pipWidget when the pipWidget is expanded.
@@ -45,10 +42,10 @@ class PIPStack extends StatefulWidget {
   final double pipWindowPadding;
 
   PIPStack(
-      {this.backgroundWidget,
-      this.pipWidget,
-      this.onClosed,
-      this.pipEnabled,
+      {@required this.backgroundWidget,
+      @required this.pipWidget,
+      @required this.onClosed,
+      @required this.pipEnabled,
       this.pipExpandedContent,
       this.pipExpandedHeight = 200.0,
       this.pipShrinkWidth = 150.0,

@@ -6,59 +6,34 @@ Flutter.
 
 ## Usage
 
-To use this package, add easy_pip as a dependency in your pubspec.yaml
+### Import the package 
+
+To use this package, [add easy_pip as a dependency](https://pub.dartlang.org/packages/easy_pip#-installing-tab-) in your pubspec.yaml
+
+### Use the package
+
+    import 'package:easy_pip/easy_pip.dart';
 
 The main widget to use is PIPStack.
 
-## Example
+The PIPStack has three elements: 
 
-    import 'package:flutter/material.dart';
-    import 'package:easy_pip/easy_pip.dart';
-    
-    /...
-    
-    .../
-    
-    class _MyHomePageState extends State<MyHomePage> {
-    
-      var pipEnabled = false;
-    
-      @override
-      Widget build(BuildContext context) {
-        return new Scaffold(
-          appBar: new AppBar(),
-          body: PIPStack(
-            backgroundWidget: Center(
-              child: RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    pipEnabled = !pipEnabled;
-                  });
-                },
-                child: Text("Click here to enable PIP"),
-              ),
-            ),
-            pipWidget: pipEnabled
-                ? Container(
-                    color: Colors.pink,
-                  )
-                : Container(),
-            pipEnabled: pipEnabled,
-            pipExpandedContent: Card(
-              color: Colors.white,
-              child: Column(
-                children: <Widget>[Text("Hello World"), Row()],
-              ),
-            ),
-            onClosed: () {
-              setState(() {
-                pipEnabled = !pipEnabled;
-              });
-            },
-          ),
-        );
-      }
-    }
+1) Background Widget (Displays behind the pip widget)
+2) PIP Widget (The widget which shrinks to go into PIP mode)
+3) PIP Expanded Content (The content below the PIP widget when the widget is expanded)
+
+Important: The pipEnabled field needs to be set to 'true' to make the pipWindow visible.
+
+Note: If the pipExpandedContent field is left blank, the pipWidget will fill the entire screen when
+expanded.
+
+Taking an analogy of the YouTube app: 
+
+The backgroundWidget would be the master list of all videos.
+
+The pipWidget would be the video player which would be shrinkable and expandable.
+
+The pipExpandedContent would be the list of recommended videos.
 
 ## Getting Started
 
