@@ -21,7 +21,7 @@ class PIPStack extends StatefulWidget {
 
   // This is the content below the pipWidget when the pipWidget is expanded.
   // In context of video-playing apps, this would be video recommendations below the playing video.
-  final Widget pipExpandedContent;
+  final Widget? pipExpandedContent;
 
   // This is the height of the pipWidget when expanded.
   final double pipExpandedHeight;
@@ -42,10 +42,10 @@ class PIPStack extends StatefulWidget {
   final double pipWindowPadding;
 
   PIPStack(
-      {@required this.backgroundWidget,
-      @required this.pipWidget,
-      @required this.onClosed,
-      @required this.pipEnabled,
+      {required this.backgroundWidget,
+      required this.pipWidget,
+      required this.onClosed,
+      required this.pipEnabled,
       this.pipExpandedContent,
       this.pipExpandedHeight = 200.0,
       this.pipShrinkWidth = 150.0,
@@ -60,12 +60,12 @@ class PIPStack extends StatefulWidget {
 
 class _PIPStackState extends State<PIPStack> with TickerProviderStateMixin {
   // The alignment animation aligns the pipWindow from top-center to bottom-right.
-  AnimationController alignmentAnimationController;
-  Animation alignmentAnimation;
+  late AnimationController alignmentAnimationController;
+  late Animation alignmentAnimation;
 
   // The window size animation takes care of the size of the window when expanding or shrinking.
-  AnimationController pipWindowSizeController;
-  Animation pipWindowAnimation;
+  late AnimationController pipWindowSizeController;
+  late Animation pipWindowAnimation;
 
   var currentAlignment = Alignment.topCenter;
 
@@ -219,7 +219,7 @@ class _PIPStackState extends State<PIPStack> with TickerProviderStateMixin {
                     ? widget.pipExpandedContent != null
                         ? isInSmallMode
                             ? Container()
-                            : Expanded(child: widget.pipExpandedContent)
+                            : Expanded(child: widget.pipExpandedContent!)
                         : Container()
                     : Container(),
               ],
